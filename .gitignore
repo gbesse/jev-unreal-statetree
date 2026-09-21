@@ -1,0 +1,13 @@
+# Purpose: Keep Unreal artifacts, native test binaries, credentials, and local state out of source control.
+Binaries/
+Build/
+DerivedDataCache/
+Intermediate/
+Saved/
+.vs/
+.idea/
+tests/guard_test
+.env
+*.sln
+*.xcodeproj
+.DS_Store
