@@ -26,6 +26,10 @@ JEV_GATEWAY_TOKEN=local-demo-token npm run demo
 
 The fixture is synthetic and never contacts Jev. For production, host your own authenticated gateway and register DecisionPacks server-side. Do not ship a TypeSafe key or a reusable gateway secret inside a packaged game.
 
+## Preview finite outcomes without Unreal
+
+In one terminal run `JEV_GATEWAY_TOKEN=local-demo-token npm run demo`. In another run `npm run demo:client`. The client sends two synthetic NPC states to the loopback fixture and checks that low health yields `retreat` while higher health yields `attack`, with matching request IDs and revisions. This previews the gateway envelope only; it does not compile or exercise the StateTree task in Editor.
+
 ## How it decides
 
 Unreal owns available actions. The gateway returns one finite outcome plus provenance. The subsystem verifies schema version, request ID, revision, pack name, model, and membership in the asset's allowed outcomes before StateTree receives anything. See [architecture](docs/architecture.md).
