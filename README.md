@@ -28,7 +28,7 @@ The fixture is synthetic and never contacts Jev. For production, host your own a
 
 ## Preview finite outcomes without Unreal
 
-In one terminal run `JEV_GATEWAY_TOKEN=local-demo-token npm run demo`. In another run `npm run demo:client`. The client sends two synthetic NPC states to the loopback fixture and checks that low health yields `retreat` while higher health yields `attack`, with matching request IDs and revisions. This previews the gateway envelope only; it does not compile or exercise the StateTree task in Editor.
+Run `npm run demo:check` for a self-contained check that starts the fixture on an ephemeral loopback port, runs the client, and shuts the fixture down. For interactive use, run `JEV_GATEWAY_TOKEN=local-demo-token npm run demo` in one terminal and `npm run demo:client` in another. The client sends two synthetic NPC states and checks that low health yields `retreat` while higher health yields `attack`, with matching request IDs and revisions. This previews the gateway envelope only; it does not compile or exercise the StateTree task in Editor.
 
 ## How it decides
 
