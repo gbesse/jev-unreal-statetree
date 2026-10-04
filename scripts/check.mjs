@@ -1,5 +1,5 @@
 // Purpose: Validate plugin metadata and source hygiene when Unreal Engine is unavailable in CI.
 import { readFileSync, readdirSync } from 'node:fs'; import { join } from 'node:path'; import { execFileSync } from 'node:child_process';
-const plugin=JSON.parse(readFileSync('JevStateTree.uplugin','utf8'));if(plugin.EngineVersion!=='5.8.0'||plugin.Modules?.[0]?.Name!=='JevStateTree')throw new Error('Unexpected Unreal plugin metadata');
+const plugin=JSON.parse(readFileSync('JevStateTree.uplugin','utf8')),pkg=JSON.parse(readFileSync('package.json','utf8'));if(plugin.EngineVersion!=='5.8.0'||plugin.Modules?.[0]?.Name!=='JevStateTree')throw new Error('Unexpected Unreal plugin metadata');if(plugin.VersionName!==pkg.version)throw new Error('Plugin and package versions must match');
 function visit(dir){for(const e of readdirSync(dir,{withFileTypes:true})){const p=join(dir,e.name);if(e.isDirectory())visit(p);else if(/\.(h|cpp|cs)$/.test(p)&&!readFileSync(p,'utf8').startsWith('// Purpose:'))throw new Error(`${p} needs a Purpose header`)}}visit('Source');
 execFileSync(process.env.CXX||'c++',['-std=c++17','-Wall','-Wextra','-Werror','-ISource/JevStateTree/Public','tests/guard_test.cpp','-o','tests/guard_test'],{stdio:'inherit'});execFileSync('tests/guard_test',[],{stdio:'inherit'});console.log('Plugin metadata and native guard checks passed');

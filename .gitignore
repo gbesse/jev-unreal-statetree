@@ -8,6 +8,8 @@ Saved/
 .idea/
 tests/guard_test
 .env
+.env.*
+!.env.example
 *.sln
 *.xcodeproj
 .DS_Store
