@@ -3,6 +3,8 @@ const url = process.env.JEV_GATEWAY_URL || 'http://127.0.0.1:8787/v1/decision';
 const token = process.env.JEV_GATEWAY_TOKEN || 'local-demo-token';
 const scenarios = [
   {name: 'low_health', health: 20, expected: 'retreat'},
+  {name: 'boundary_below', health: 29, expected: 'retreat'},
+  {name: 'boundary_at', health: 30, expected: 'attack'},
   {name: 'high_health', health: 80, expected: 'attack'},
 ];
 const results = [];
