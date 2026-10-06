@@ -1,5 +1,13 @@
 # Jev StateTree for Unreal Engine
 
+## Fixture boundary / Limite de la fixture / Límite de la fixture
+
+Run `npm run demo:check` to exercise health values 29 and 30 on the local synthetic gateway. The fixture changes from `retreat` to `attack` at 30 and checks request identity and revision for every response. This is an HTTP contract example; validate the StateTree task separately in Unreal Editor before shipping it.
+
+Exécutez `npm run demo:check` pour essayer les valeurs de santé 29 et 30 sur la passerelle synthétique locale. La fixture passe de `retreat` à `attack` à 30 et vérifie l'identité de la requête et la révision de chaque réponse. Cet exemple vérifie le contrat HTTP ; validez la tâche StateTree séparément dans Unreal Editor avant sa publication.
+
+Ejecute `npm run demo:check` para probar los valores de salud 29 y 30 en la pasarela sintética local. La fixture cambia de `retreat` a `attack` en 30 y comprueba la identidad de la solicitud y la revisión de cada respuesta. Este ejemplo verifica el contrato HTTP; valide la tarea StateTree por separado en Unreal Editor antes de publicarla.
+
 **Run finite, revision-guarded Jev decisions as native Unreal Engine 5.8 StateTree tasks.**
 
 [![Tests](https://github.com/gbesse/jev-unreal-statetree/actions/workflows/test.yml/badge.svg)](https://github.com/gbesse/jev-unreal-statetree/actions/workflows/test.yml) [MIT](LICENSE) · Unreal Engine 5.8 · C++ runtime plugin · Public alpha
