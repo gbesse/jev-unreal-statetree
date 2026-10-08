@@ -53,3 +53,11 @@ This is not a per-frame inference system, navigation system, planner, or authori
 [Unity Jev Behavior](https://github.com/gbesse/unity-jev-behavior) · [Reflex Godot](https://github.com/gbesse/reflex-godot) · [DecisionPacks](https://github.com/gbesse/decisionpacks) · [WorldKit](https://github.com/gbesse/worldkit)
 
 Independent project; not affiliated with TypeSafe AI or Epic Games. [TypeSafe API](https://docs.typesafe.ai/api) · [Unreal StateTree](https://dev.epicgames.com/documentation/en-us/unreal-engine/overview-of-state-tree-in-unreal-engine)
+
+## October 2026 improvement · Amélioration d’octobre 2026 · Mejora de octubre de 2026
+
+`npm run demo:check` now also verifies that invalid health is rejected with HTTP 400 by the synthetic gateway. This does not validate the plugin in Unreal Editor.
+
+`npm run demo:check` vérifie aussi que la passerelle synthétique refuse une santé invalide avec HTTP 400. Cela ne valide pas le plugin dans Unreal Editor.
+
+`npm run demo:check` también comprueba que la pasarela sintética rechaza una salud inválida con HTTP 400. Esto no valida el complemento en Unreal Editor.
