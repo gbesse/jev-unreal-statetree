@@ -22,4 +22,10 @@ for (const scenario of scenarios) {
   }
   results.push({scenario: scenario.name, outcome: body.record.outcome, request_identity_ok: true});
 }
-console.log(JSON.stringify({source: 'synthetic loopback fixture; no Jev or Unreal', results}, null, 2));
+const invalid = await fetch(url, {
+  method: 'POST',
+  headers: {'authorization': `Bearer ${token}`, 'content-type': 'application/json'},
+  body: JSON.stringify({requestId: 'fixture-invalid', revision: 'world-invalid', packId: 'npc-combat', state: {health: 101}}),
+});
+if (invalid.status !== 400) throw new Error(`Expected invalid health to be rejected; got ${invalid.status}`);
+console.log(JSON.stringify({source: 'synthetic loopback fixture; no Jev or Unreal', results, invalid_health_status: invalid.status}, null, 2));
