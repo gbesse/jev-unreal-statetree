@@ -61,3 +61,7 @@ Independent project; not affiliated with TypeSafe AI or Epic Games. [TypeSafe AP
 `npm run demo:check` vérifie aussi que la passerelle synthétique refuse une santé invalide avec HTTP 400. Cela ne valide pas le plugin dans Unreal Editor.
 
 `npm run demo:check` también comprueba que la pasarela sintética rechaza una salud inválida con HTTP 400. Esto no valida el complemento en Unreal Editor.
+
+## Contrôle d’adoption · Adoption check · Comprobación de adopción
+
+[Français : essayer un cas concret](examples/adoption-check.md) · [English: try a concrete case](examples/adoption-check.md) · [Español: pruebe un caso concreto](examples/adoption-check.md).
