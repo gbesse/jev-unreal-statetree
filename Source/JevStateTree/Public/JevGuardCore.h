@@ -23,6 +23,9 @@ struct GuardInput
 
 inline std::string Validate(const GuardInput& Input)
 {
+    if (Input.RequestId.empty() || Input.ExpectedRequestId.empty() || Input.Revision.empty() ||
+        Input.CapturedRevision.empty() || Input.CurrentRevision.empty() || Input.Pack.empty() || Input.ExpectedPack.empty())
+        return "Identite de decision vide / Empty decision identity / Identidad de decision vacia";
     if (Input.CurrentRevision != Input.CapturedRevision) return "world revision changed during evaluation";
     if (Input.RequestId != Input.ExpectedRequestId || Input.Revision != Input.CapturedRevision) return "decision request mismatch";
     if (Input.SchemaVersion != 1 || Input.Pack != Input.ExpectedPack || Input.Model.empty()) return "invalid decision provenance";
