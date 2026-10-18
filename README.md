@@ -65,3 +65,10 @@ Independent project; not affiliated with TypeSafe AI or Epic Games. [TypeSafe AP
 ## Contrôle d’adoption · Adoption check · Comprobación de adopción
 
 [Français : essayer un cas concret](examples/adoption-check.md) · [English: try a concrete case](examples/adoption-check.md) · [Español: pruebe un caso concreto](examples/adoption-check.md).
+
+
+FR : Le garde C++ portable refuse les identifiants de requête, pack ou révision vides, même lorsque deux champs vides sont égaux. `npm test` compile cette logique avec avertissements traités en erreurs et couvre chaque champ. L’identité reste déclarée, pas authentifiée. Ce changement est publié en source via PR ; aucun nouveau tag de plugin ni binaire Unreal avant la validation UE 5.8 Editor exigée ci-dessus, absente ici.
+
+EN: The portable C++ guard rejects empty request, pack or revision identities even when matching fields are both empty. `npm test` compiles this logic with warnings as errors and covers each field. Identity remains declared rather than authenticated. This change is published as source through a PR; no new plugin tag or Unreal binary before the required UE 5.8 Editor validation above, unavailable here.
+
+ES: El guard C++ portable rechaza identidades vacías de solicitud, pack o revisión aunque ambos campos coincidan vacíos. `npm test` compila la lógica con advertencias como errores y cubre cada campo. La identidad sigue declarada, no autenticada. Se publica código mediante PR; sin nuevo tag de plugin ni binario Unreal antes de la validación UE 5.8 Editor requerida arriba, no disponible aquí.
