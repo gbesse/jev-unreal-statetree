@@ -2,6 +2,7 @@
 #include "JevGuardCore.h"
 #include <cassert>
 #include <iostream>
+#include <limits>
 
 int main()
 {
@@ -23,5 +24,11 @@ int main()
     {
         Input = Valid; (Input.*Field).clear(); assert(!JevStateTree::Validate(Input).empty());
     }
+    for (double Version : {0.0, 1.1, 1.9, -1.0, std::numeric_limits<double>::infinity(), std::numeric_limits<double>::quiet_NaN()})
+    {
+        Input = Valid; Input.SchemaVersion = Version;
+        assert(!JevStateTree::Validate(Input).empty());
+    }
+    Input = Valid; Input.SchemaVersion = 1.0; assert(JevStateTree::Validate(Input).empty());
     std::cout << "Jev guard tests passed\n";
 }
