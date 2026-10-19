@@ -72,3 +72,11 @@ FR : Le garde C++ portable refuse les identifiants de requête, pack ou révisio
 EN: The portable C++ guard rejects empty request, pack or revision identities even when matching fields are both empty. `npm test` compiles this logic with warnings as errors and covers each field. Identity remains declared rather than authenticated. This change is published as source through a PR; no new plugin tag or Unreal binary before the required UE 5.8 Editor validation above, unavailable here.
 
 ES: El guard C++ portable rechaza identidades vacías de solicitud, pack o revisión aunque ambos campos coincidan vacíos. `npm test` compila la lógica con advertencias como errores y cubre cada campo. La identidad sigue declarada, no autenticada. Se publica código mediante PR; sin nuevo tag de plugin ni binario Unreal antes de la validación UE 5.8 Editor requerida arriba, no disponible aquí.
+
+## Version exacte du contrat / Exact contract version / Versión exacta del contrato
+
+FR — Le chemin natif transmet maintenant la valeur numérique du schéma au garde portable sans conversion entière. Une version `1.1` ou `1.9` ne peut plus devenir `1` par troncation ; valeurs non finies et autres versions sont rejetées. Le compilateur natif teste le garde, pas le plugin dans UE 5.8. Publication source seulement, sans tag de plugin avant les contrôles Editor/PIE exigés plus haut.
+
+EN — The native path now passes the numeric schema version to the portable guard without integer conversion. Versions `1.1` or `1.9` cannot truncate into `1`; nonfinite values and other versions are rejected. The native compiler tests the guard, not the UE 5.8 plugin. Source publication only, without a plugin tag until the required Editor/PIE checks above.
+
+ES — La ruta nativa pasa la versión numérica al guard portable sin conversión entera. Versiones `1.1` o `1.9` no se truncan a `1`; valores no finitos y otras versiones se rechazan. El compilador prueba el guard, no el plugin UE 5.8. Solo código fuente, sin tag hasta las comprobaciones Editor/PIE exigidas arriba.
