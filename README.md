@@ -80,3 +80,11 @@ FR — Le chemin natif transmet maintenant la valeur numérique du schéma au ga
 EN — The native path now passes the numeric schema version to the portable guard without integer conversion. Versions `1.1` or `1.9` cannot truncate into `1`; nonfinite values and other versions are rejected. The native compiler tests the guard, not the UE 5.8 plugin. Source publication only, without a plugin tag until the required Editor/PIE checks above.
 
 ES — La ruta nativa pasa la versión numérica al guard portable sin conversión entera. Versiones `1.1` o `1.9` no se truncan a `1`; valores no finitos y otras versiones se rechazan. El compilador prueba el guard, no el plugin UE 5.8. Solo código fuente, sin tag hasta las comprobaciones Editor/PIE exigidas arriba.
+
+## Identités / Identities / Identidades
+
+FR — Les identités, révisions, modèles et issues composés uniquement d’espaces ASCII sont rejetés. Le garde C++ est testé séparément ; UE 5.8 Editor/PIE reste absent et aucun nouveau tag natif n’est publié.
+
+EN — Identities, revisions, models and outcomes containing only ASCII whitespace are rejected. The C++ guard is tested separately; UE 5.8 Editor/PIE remains absent and no native tag is published.
+
+ES — Se rechazan identidades, revisiones, modelos y resultados formados solo por espacios ASCII. El guard C++ se prueba por separado; falta UE 5.8 Editor/PIE y no se publica tag nativo.

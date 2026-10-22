@@ -30,5 +30,12 @@ int main()
         assert(!JevStateTree::Validate(Input).empty());
     }
     Input = Valid; Input.SchemaVersion = 1.0; assert(JevStateTree::Validate(Input).empty());
+    for (std::string JevStateTree::GuardInput::* Field : {&JevStateTree::GuardInput::RequestId,
+            &JevStateTree::GuardInput::ExpectedRequestId, &JevStateTree::GuardInput::Revision,
+            &JevStateTree::GuardInput::CapturedRevision, &JevStateTree::GuardInput::CurrentRevision,
+            &JevStateTree::GuardInput::Pack, &JevStateTree::GuardInput::ExpectedPack,
+            &JevStateTree::GuardInput::Model, &JevStateTree::GuardInput::Outcome})
+    { Input = Valid; (Input.*Field) = " \t\r\n"; assert(!JevStateTree::Validate(Input).empty()); }
+    Input = Valid; Input.Model = " "; assert(!JevStateTree::Validate(Input).empty());
     std::cout << "Jev guard tests passed\n";
 }

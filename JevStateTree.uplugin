@@ -1,7 +1,7 @@
 {
   "FileVersion": 3,
-  "Version": 1,
-  "VersionName": "0.1.1",
+  "Version": 2,
+  "VersionName": "0.1.2",
   "FriendlyName": "Jev StateTree",
   "Description": "Event-driven, finite Jev decisions as native Unreal Engine StateTree tasks.",
   "Category": "AI",
@@ -14,10 +14,20 @@
   "CanContainContent": false,
   "Installed": false,
   "Modules": [
-    { "Name": "JevStateTree", "Type": "Runtime", "LoadingPhase": "Default" }
+    {
+      "Name": "JevStateTree",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
+    }
   ],
   "Plugins": [
-    { "Name": "StateTree", "Enabled": true },
-    { "Name": "GameplayStateTree", "Enabled": true }
+    {
+      "Name": "StateTree",
+      "Enabled": true
+    },
+    {
+      "Name": "GameplayStateTree",
+      "Enabled": true
+    }
   ]
 }
