@@ -88,3 +88,11 @@ FR — Les identités, révisions, modèles et issues composés uniquement d’e
 EN — Identities, revisions, models and outcomes containing only ASCII whitespace are rejected. The C++ guard is tested separately; UE 5.8 Editor/PIE remains absent and no native tag is published.
 
 ES — Se rechazan identidades, revisiones, modelos y resultados formados solo por espacios ASCII. El guard C++ se prueba por separado; falta UE 5.8 Editor/PIE y no se publica tag nativo.
+
+## Policy integrity / Intégrité de politique / Integridad de política
+
+FR — La politique entière est vérifiée avant sélection : liste non vide, issues non vides et uniques. Un choix valide ne masque plus une politique contradictoire. Garde C++ réel testé ; UE 5.8 Editor/PIE reste absent.
+
+EN — The whole policy is checked before selection: nonempty list, nonblank unique outcomes. A valid choice no longer masks a contradictory policy. Actual C++ guard tested; UE 5.8 Editor/PIE remains absent.
+
+ES — Se comprueba toda la política antes de seleccionar: lista no vacía, resultados no vacíos y únicos. Una elección válida ya no oculta una política contradictoria. Guard C++ real probado; UE 5.8 Editor/PIE sigue ausente.

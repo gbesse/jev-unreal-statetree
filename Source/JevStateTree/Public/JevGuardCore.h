@@ -4,6 +4,7 @@
 #include <cctype>
 #include <string>
 #include <vector>
+#include <unordered_set>
 
 namespace JevStateTree
 {
@@ -32,6 +33,11 @@ inline std::string Validate(const GuardInput& Input)
     if (!HasText(Input.RequestId) || !HasText(Input.ExpectedRequestId) || !HasText(Input.Revision) ||
         !HasText(Input.CapturedRevision) || !HasText(Input.CurrentRevision) || !HasText(Input.Pack) || !HasText(Input.ExpectedPack))
         return "Identite de decision vide / Empty decision identity / Identidad de decision vacia";
+    std::unordered_set<std::string> Seen;
+    if (Input.AllowedOutcomes.empty()) return "Politique vide / Empty policy / Politica vacia";
+    for (const auto& Outcome : Input.AllowedOutcomes)
+        if (!HasText(Outcome) || !Seen.insert(Outcome).second)
+            return "Issues vides ou dupliquees / Empty or duplicate outcomes / Resultados vacios o duplicados";
     if (Input.CurrentRevision != Input.CapturedRevision) return "world revision changed during evaluation";
     if (Input.RequestId != Input.ExpectedRequestId || Input.Revision != Input.CapturedRevision) return "decision request mismatch";
     if (Input.SchemaVersion != 1 || Input.Pack != Input.ExpectedPack || !HasText(Input.Model)) return "Provenance de decision invalide / Invalid decision provenance / Procedencia de decision no valida";
