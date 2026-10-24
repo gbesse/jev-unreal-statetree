@@ -37,5 +37,8 @@ int main()
             &JevStateTree::GuardInput::Model, &JevStateTree::GuardInput::Outcome})
     { Input = Valid; (Input.*Field) = " \t\r\n"; assert(!JevStateTree::Validate(Input).empty()); }
     Input = Valid; Input.Model = " "; assert(!JevStateTree::Validate(Input).empty());
+    for (const auto& Allowed : std::vector<std::vector<std::string>>{{},{"attack","attack"},{"attack"," "},{"attack",""}})
+    { Input = Valid; Input.AllowedOutcomes = Allowed; assert(!JevStateTree::Validate(Input).empty()); }
+    Input = Valid; Input.AllowedOutcomes = {"attack","retreat"}; assert(JevStateTree::Validate(Input).empty());
     std::cout << "Jev guard tests passed\n";
 }
