@@ -21,6 +21,7 @@ struct GuardInput
     std::string Model;
     std::string Outcome;
     std::vector<std::string> AllowedOutcomes;
+    std::string ExpectedModel;
 };
 
 inline bool HasText(const std::string& Value)
@@ -41,6 +42,8 @@ inline std::string Validate(const GuardInput& Input)
     if (Input.CurrentRevision != Input.CapturedRevision) return "world revision changed during evaluation";
     if (Input.RequestId != Input.ExpectedRequestId || Input.Revision != Input.CapturedRevision) return "decision request mismatch";
     if (Input.SchemaVersion != 1 || Input.Pack != Input.ExpectedPack || !HasText(Input.Model)) return "Provenance de decision invalide / Invalid decision provenance / Procedencia de decision no valida";
+    if (!Input.ExpectedModel.empty() && Input.Model != Input.ExpectedModel)
+        return "Modele different / Model mismatch / Modelo distinto";
     if (!HasText(Input.Outcome) || std::find(Input.AllowedOutcomes.begin(), Input.AllowedOutcomes.end(), Input.Outcome) == Input.AllowedOutcomes.end()) return "decision outcome is not allowed";
     return {};
 }

@@ -9,6 +9,9 @@ class JEVSTATETREE_API UJevStateTreeSettings final : public UDeveloperSettings
     GENERATED_BODY()
 public:
     UPROPERTY(Config, EditAnywhere, Category="Gateway")
+    FString ExpectedModel = TEXT("jev-1.13.0");
+
+    UPROPERTY(Config, EditAnywhere, Category="Gateway")
     FString GatewayUrl = TEXT("http://127.0.0.1:8787/v1/decision");
 
     UPROPERTY(Config, EditAnywhere, Category="Gateway", meta=(ClampMin="1", ClampMax="60"))

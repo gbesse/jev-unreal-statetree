@@ -28,6 +28,8 @@ FGuid UJevDecisionSubsystem::Request(const UJevDecisionAsset* Asset, const FStri
     TSharedPtr<FJsonObject> ParsedState;
     if (!FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(StateJson), ParsedState) || !ParsedState.IsValid()) { Fail(TEXT("StateJson must be a JSON object.")); return Id; }
     const UJevStateTreeSettings* Settings = GetDefault<UJevStateTreeSettings>();
+    Entry.ExpectedModel = Settings->ExpectedModel;
+    if (Entry.ExpectedModel.TrimStartAndEnd().IsEmpty()) { Fail(TEXT("Modele attendu vide / Empty expected model / Modelo esperado vacio")); return Id; }
     const bool bSecure = Settings->GatewayUrl.StartsWith(TEXT("https://"), ESearchCase::IgnoreCase);
     const bool bLoopback = Settings->GatewayUrl.StartsWith(TEXT("http://127.0.0.1:"), ESearchCase::IgnoreCase) || Settings->GatewayUrl.StartsWith(TEXT("http://localhost:"), ESearchCase::IgnoreCase);
     if (!bSecure && !bLoopback) { Fail(TEXT("Gateway requires HTTPS except on loopback.")); return Id; }
@@ -46,7 +48,7 @@ FGuid UJevDecisionSubsystem::Request(const UJevDecisionAsset* Asset, const FStri
         FString RequestId, ResponseRevision, PackName, Model, Outcome; double SchemaVersion = 0.0;
         const bool bFieldsValid = Root->TryGetStringField(TEXT("requestId"), RequestId) && Root->TryGetStringField(TEXT("revision"), ResponseRevision) && (*Record)->TryGetNumberField(TEXT("schemaVersion"), SchemaVersion) && Pack && Pack->IsValid() && (*Pack)->TryGetStringField(TEXT("name"), PackName) && (*Record)->TryGetStringField(TEXT("model"), Model) && (*Record)->TryGetStringField(TEXT("outcome"), Outcome);
         if (!bFieldsValid) { FailItem(TEXT("Gateway response fields are invalid.")); return; }
-        JevStateTree::GuardInput Guard; Guard.SchemaVersion = SchemaVersion; Guard.RequestId = TCHAR_TO_UTF8(*RequestId); Guard.ExpectedRequestId = TCHAR_TO_UTF8(*Id.ToString(EGuidFormats::Digits)); Guard.Revision = TCHAR_TO_UTF8(*ResponseRevision); Guard.CapturedRevision = TCHAR_TO_UTF8(*Item->Revision); Guard.CurrentRevision = Guard.CapturedRevision; Guard.Pack = TCHAR_TO_UTF8(*PackName); Guard.ExpectedPack = TCHAR_TO_UTF8(*Item->Pack); Guard.Model = TCHAR_TO_UTF8(*Model); Guard.Outcome = TCHAR_TO_UTF8(*Outcome); for (const FString& Value : Item->Allowed) Guard.AllowedOutcomes.emplace_back(TCHAR_TO_UTF8(*Value));
+        JevStateTree::GuardInput Guard; Guard.SchemaVersion = SchemaVersion; Guard.RequestId = TCHAR_TO_UTF8(*RequestId); Guard.ExpectedRequestId = TCHAR_TO_UTF8(*Id.ToString(EGuidFormats::Digits)); Guard.Revision = TCHAR_TO_UTF8(*ResponseRevision); Guard.CapturedRevision = TCHAR_TO_UTF8(*Item->Revision); Guard.CurrentRevision = Guard.CapturedRevision; Guard.Pack = TCHAR_TO_UTF8(*PackName); Guard.ExpectedPack = TCHAR_TO_UTF8(*Item->Pack); Guard.Model = TCHAR_TO_UTF8(*Model); Guard.ExpectedModel = TCHAR_TO_UTF8(*Item->ExpectedModel); Guard.Outcome = TCHAR_TO_UTF8(*Outcome); for (const FString& Value : Item->Allowed) Guard.AllowedOutcomes.emplace_back(TCHAR_TO_UTF8(*Value));
         const std::string Error = JevStateTree::Validate(Guard); Item->Result.bComplete = true; Item->Result.bSucceeded = Error.empty(); Item->Result.Error = UTF8_TO_TCHAR(Error.c_str()); Item->Result.Outcome = Item->Result.bSucceeded ? UTF8_TO_TCHAR(Guard.Outcome.c_str()) : TEXT(""); Item->Result.Model = UTF8_TO_TCHAR(Guard.Model.c_str());
     });
     if (!Entry.Http->ProcessRequest()) Fail(TEXT("Could not start gateway request."));
