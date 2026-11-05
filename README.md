@@ -96,3 +96,12 @@ FR — La politique entière est vérifiée avant sélection : liste non vide, i
 EN — The whole policy is checked before selection: nonempty list, nonblank unique outcomes. A valid choice no longer masks a contradictory policy. Actual C++ guard tested; UE 5.8 Editor/PIE remains absent.
 
 ES — Se comprueba toda la política antes de seleccionar: lista no vacía, resultados no vacíos y únicos. Una elección válida ya no oculta una política contradictoria. Guard C++ real probado; UE 5.8 Editor/PIE sigue ausente.
+
+
+## 2026-11-05 — FR / EN / ES
+
+FR : `ExpectedModel` des réglages est capturé par requête, puis vérifié dans le garde C++ de production. Modèle vide refusé avant HTTP. Tests C++ et loopback seulement ; UE5.8 Editor/PIE NON validé, source uniquement, aucun nouveau tag natif.
+
+EN: Settings `ExpectedModel` is captured per request and checked by the production C++ guard. Empty model rejected before HTTP. C++ and loopback tests only; UE5.8 Editor/PIE UNVALIDATED, source only, no new native tag.
+
+ES: `ExpectedModel` de ajustes se captura por solicitud y valida en guarda C++ de producción. Modelo vacío rechazado antes de HTTP. Solo pruebas C++ y loopback; UE5.8 Editor/PIE NO validado, solo fuentes, sin tag nativo nuevo.

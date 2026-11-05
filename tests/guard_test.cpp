@@ -6,7 +6,7 @@
 
 int main()
 {
-    JevStateTree::GuardInput Input{1,"req","req","7","7","7","npc-combat","npc-combat","jev-1.13.0","retreat",{"attack","retreat","flank"}};
+    JevStateTree::GuardInput Input{1,"req","req","7","7","7","npc-combat","npc-combat","jev-1.13.0","retreat",{"attack","retreat","flank"},"jev-1.13.0"};
     assert(JevStateTree::Validate(Input).empty());
     Input.CurrentRevision = "8"; assert(JevStateTree::Validate(Input) == "world revision changed during evaluation");
     Input.CurrentRevision = "7"; Input.Outcome = "delete-save"; assert(JevStateTree::Validate(Input) == "decision outcome is not allowed");
@@ -40,5 +40,7 @@ int main()
     for (const auto& Allowed : std::vector<std::vector<std::string>>{{},{"attack","attack"},{"attack"," "},{"attack",""}})
     { Input = Valid; Input.AllowedOutcomes = Allowed; assert(!JevStateTree::Validate(Input).empty()); }
     Input = Valid; Input.AllowedOutcomes = {"attack","retreat"}; assert(JevStateTree::Validate(Input).empty());
+    Input = Valid; Input.ExpectedModel = "other-model"; assert(!JevStateTree::Validate(Input).empty());
+    Input = Valid; Input.ExpectedModel = "jev-1.13.0"; assert(JevStateTree::Validate(Input).empty());
     std::cout << "Jev guard tests passed\n";
 }

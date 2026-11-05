@@ -27,7 +27,7 @@ public:
     void Cancel(const FGuid& RequestId);
 
 private:
-    struct FPending { FString Revision; FString Pack; TArray<FString> Allowed; FJevDecisionResult Result; TSharedPtr<class IHttpRequest, ESPMode::ThreadSafe> Http; };
+    struct FPending { FString Revision; FString Pack; FString ExpectedModel; TArray<FString> Allowed; FJevDecisionResult Result; TSharedPtr<class IHttpRequest, ESPMode::ThreadSafe> Http; };
     TMap<FGuid, FPending> Pending;
     FString SessionToken;
 };
