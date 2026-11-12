@@ -42,5 +42,9 @@ int main()
     Input = Valid; Input.AllowedOutcomes = {"attack","retreat"}; assert(JevStateTree::Validate(Input).empty());
     Input = Valid; Input.ExpectedModel = "other-model"; assert(!JevStateTree::Validate(Input).empty());
     Input = Valid; Input.ExpectedModel = "jev-1.13.0"; assert(JevStateTree::Validate(Input).empty());
+    Input = Valid; Input.RequestId = std::string(4096, 'r'); Input.ExpectedRequestId = Input.RequestId; assert(JevStateTree::Validate(Input).empty());
+    Input.RequestId.push_back('r'); assert(!JevStateTree::Validate(Input).empty());
+    Input = Valid; Input.AllowedOutcomes.clear(); for (int I=0; I<256; ++I) Input.AllowedOutcomes.push_back("outcome-"+std::to_string(I)); assert(!JevStateTree::Validate(Input).empty());
+    Input = Valid; Input.Model = std::string(4097,'m'); assert(!JevStateTree::Validate(Input).empty());
     std::cout << "Jev guard tests passed\n";
 }

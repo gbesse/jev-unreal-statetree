@@ -42,6 +42,7 @@ FGuid UJevDecisionSubsystem::Request(const UJevDecisionAsset* Asset, const FStri
         FPending* Item = Pending.Find(Id); if (!Item) return;
         const auto FailItem = [Item](const FString& Error) { Item->Result.bComplete = true; Item->Result.bSucceeded = false; Item->Result.Outcome.Empty(); Item->Result.Error = Error; Item->Result.Model.Empty(); };
         if (!bConnected || !Response.IsValid() || Response->GetResponseCode() < 200 || Response->GetResponseCode() >= 300) { FailItem(TEXT("Gateway request failed.")); return; }
+        if (Response->GetContent().Num() > 100000) { FailItem(TEXT("Reponse trop volumineuse / Response too large / Respuesta demasiado grande")); return; }
         TSharedPtr<FJsonObject> Root; if (!FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Response->GetContentAsString()), Root) || !Root.IsValid()) { FailItem(TEXT("Gateway returned invalid JSON.")); return; }
         const TSharedPtr<FJsonObject>* Record = nullptr; if (!Root->TryGetObjectField(TEXT("record"), Record) || !Record || !Record->IsValid()) { FailItem(TEXT("Gateway response has no record.")); return; }
         const TSharedPtr<FJsonObject>* Pack = nullptr; (*Record)->TryGetObjectField(TEXT("pack"), Pack);

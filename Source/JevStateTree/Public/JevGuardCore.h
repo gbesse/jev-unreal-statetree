@@ -34,6 +34,12 @@ inline std::string Validate(const GuardInput& Input)
     if (!HasText(Input.RequestId) || !HasText(Input.ExpectedRequestId) || !HasText(Input.Revision) ||
         !HasText(Input.CapturedRevision) || !HasText(Input.CurrentRevision) || !HasText(Input.Pack) || !HasText(Input.ExpectedPack))
         return "Identite de decision vide / Empty decision identity / Identidad de decision vacia";
+    for (const auto* Value : {&Input.RequestId, &Input.ExpectedRequestId, &Input.Revision, &Input.CapturedRevision,
+         &Input.CurrentRevision, &Input.Pack, &Input.ExpectedPack, &Input.Model, &Input.Outcome, &Input.ExpectedModel})
+        if (Value->size() > 4096) return "Identite trop longue / Identity too long / Identidad demasiado larga";
+    if (Input.AllowedOutcomes.size() > 255) return "Trop d'issues / Too many outcomes / Demasiados resultados";
+    for (const auto& Value : Input.AllowedOutcomes)
+        if (Value.size() > 4096) return "Issue trop longue / Outcome too long / Resultado demasiado largo";
     std::unordered_set<std::string> Seen;
     if (Input.AllowedOutcomes.empty()) return "Politique vide / Empty policy / Politica vacia";
     for (const auto& Outcome : Input.AllowedOutcomes)
