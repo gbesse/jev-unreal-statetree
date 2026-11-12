@@ -105,3 +105,12 @@ FR : `ExpectedModel` des réglages est capturé par requête, puis vérifié dan
 EN: Settings `ExpectedModel` is captured per request and checked by the production C++ guard. Empty model rejected before HTTP. C++ and loopback tests only; UE5.8 Editor/PIE UNVALIDATED, source only, no new native tag.
 
 ES: `ExpectedModel` de ajustes se captura por solicitud y valida en guarda C++ de producción. Modelo vacío rechazado antes de HTTP. Solo pruebas C++ y loopback; UE5.8 Editor/PIE NO validado, solo fuentes, sin tag nativo nuevo.
+
+
+## 2026-11-12 — FR / EN / ES
+
+FR : Borner les octets de réponse avant JSON et les identités du garde de production Unreal.
+
+EN: Bound reply bytes before JSON parsing and identity sizes in the production Unreal guard.
+
+ES: Acotar bytes de respuesta antes de JSON y tamaños de identidad en guarda de producción Unreal.
